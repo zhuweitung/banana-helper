@@ -25,8 +25,8 @@ public class DailyTask {
         dailyTasks = new ArrayList<>();
         dailyTasks.add(new InitAcerTask());
         dailyTasks.add(new SignTask());
-//        dailyTasks.add(new ThrowBananaTask());
-//        dailyTasks.add(new DanmuTask());
+        dailyTasks.add(new ThrowBananaTask());
+        dailyTasks.add(new DanmuTask());
         dailyTasks.add(new LikeTask());
         dailyTasks.add(new ShareTask());
     }

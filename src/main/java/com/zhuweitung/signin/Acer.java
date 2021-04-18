@@ -142,18 +142,4 @@ public class Acer implements Serializable {
         return ACER;
     }
 
-    /**
-     * @description 吃我N蕉
-     * @param bananaNum
-     * @return boolean
-     * @author zhuweitung
-     * @date 2021/4/18
-     */
-    public static boolean eatBanana(int bananaNum) {
-        if (bananaNum > 0 && bananaNum <= ACER.getBanana()) {
-            ACER.setBanana(ACER.getBanana() - bananaNum);
-            return true;
-        }
-        return false;
-    }
 }

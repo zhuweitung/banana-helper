@@ -2,9 +2,6 @@ package com.zhuweitung;
 
 import com.zhuweitung.api.AcFunApiHelper;
 import com.zhuweitung.config.Config;
-import com.zhuweitung.model.Danmu;
-import com.zhuweitung.model.VideoBase;
-import com.zhuweitung.signin.Acer;
 import com.zhuweitung.signin.Cookie;
 import com.zhuweitung.task.DailyTask;
 import lombok.extern.log4j.Log4j2;

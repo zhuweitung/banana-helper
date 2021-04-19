@@ -77,6 +77,7 @@ public class HttpUtil {
         headers.put("accept-language", "zh-Hans-CN;q=1, en-CN;q=0.9, ja-CN;q=0.8, zh-Hant-HK;q=0.7, io-Latn-CN;q=0.6");
         headers.put("accept", "application/json");
         headers.put("content-type", "application/x-www-form-urlencoded");
+        headers.put("acPlatform", "IPHONE");
         return headers;
     }
 
@@ -139,16 +140,16 @@ public class HttpUtil {
         httpPost.setConfig(REQUEST_CONFIG);
 
         //设置请求头
-        if (StringUtil.isJsonString(requestBody)) {
-            httpPost.setHeader("Content-Type", "application/json");
-        } else {
-            httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-        }
         httpPost.setHeader("Connection", "keep-alive");
         httpPost.setHeader("User-Agent", userAgent);
         httpPost.setHeader("Cookie", cookie.getCookies());
         if (MapUtils.isNotEmpty(headers)) {
             headers.entrySet().forEach(entry -> httpPost.setHeader(entry.getKey(), entry.getValue()));
+        }
+        if (StringUtil.isJsonString(requestBody)) {
+            httpPost.setHeader("Content-Type", "application/json");
+        } else {
+            httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
         }
 
         //封装请求参数

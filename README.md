@@ -1,4 +1,62 @@
 # banana-helper
-AcFun每日任务助手，自动点赞投蕉弹幕分享
+[![GitHub stars](https://img.shields.io/github/stars/zhuweitung/banana-helper?style=flat-square)](https://github.com/zhuweitung/banana-helper/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/zhuweitung/banana-helper?style=flat-square)](https://github.com/zhuweitung/banana-helper/network)
+[![GitHub issues](https://img.shields.io/github/issues/zhuweitung/banana-helper?style=flat-square)](https://github.com/zhuweitung/banana-helper/issues)
+[![GitHub license](https://img.shields.io/github/license/zhuweitung/banana-helper?style=flat-square)](https://github.com/zhuweitung/banana-helper/blob/main/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/zhuweitung/banana-helper?style=flat-square)](https://github.com/zhuweitung/banana-helper/graphs/contributors)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/zhuweitung/banana-helper?style=flat-square)
 
-详细的配置说明、使用方法、GitHub Actions、Linux安装脚本过两天再添加
+
+[TOC]
+
+## 项目简介
+
+本项目是一个利用GitHub Actions来实现AcFun每日签到、投蕉、点赞、弹幕、分享。目标是让每根香蕉最终的归宿是UP的口袋，而不是一个月之后烂掉。
+
+## 使用说明
+
+1. **Fork**本仓库；
+2. 打开浏览器，访问[A站](https://www.acfun.cn/)，并登录自己的账号；
+3. 在A站的页面上按下<kbd>F12</kbd>进入开发者工具；
+
+<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419205737.png" style="display:inline-block"/>
+
+4. 根据上述图解操作后获得`acPasstoken`和`auth_key`的值，将这两个值填入仓库>`Settings`>`Secrets`中；
+
+<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419210900.png" style="display:inline-block"/>
+
+5. 手动执行任务，测试配置是否正确；
+
+<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419211126.png" style="display:inline-block"/>
+
+
+
+## 配置说明
+
+配置文件位于**src/main/resources/config.json**
+
+| Key              | Value        | 说明                                                         |
+| ---------------- | ------------ | ------------------------------------------------------------ |
+| throwBananaNum   | Integer      | 每日投蕉数,默认20                                            |
+| throwAndLike     | [0,1]        | 投蕉并点赞，默认`开启`                                       |
+| throwAndDanmu    | [0,1]        | 投蕉并发送弹幕，默认`开启`                                   |
+| isLike           | [0,1]        | 是否点赞（手机端每日任务），默认`开启`                       |
+| isDanmu          | [0,1]        | 是否发送弹幕（手机端每日任务），默认`开启`                   |
+| danmuPriority    | [0,1]        | 弹幕优先级，0：从视频弹幕池中取频率最高的发送，1：从自定义弹幕池中随机取弹幕，默认`0` |
+| danmuPool        | [String,...] | 自定义弹幕池                                                 |
+| isShare          | [0,1]        | 是否分享（手机端每日任务），默认`开启`                       |
+| bananaPriority   | [0,1]        | 投蕉优先级，0：优先给每日香蕉榜投蕉，1：优先给关注的up投蕉，默认`0` |
+| followUpPriority | [uid,...]    | 关注up的投蕉优先级，up的uid可以进入up的主页获取，**若投蕉优先级设为1，建议Fork后先把这个列表置空或者填入自己优先关注的up** |
+| userAgent        | String       | UA标识，AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)          |
+
+## API 参考列表
+
+- [Sitoi/dailycheckin](https://github.com/Sitoi/dailycheckin)
+
+## 特别声明
+
+- 本仓库发布的脚本及其中涉及的任何解锁和解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。
+- 本人对任何脚本问题概不负责，包括但不限于由任何脚本错误导致的任何损失或损害。
+- 间接使用脚本的任何用户，包括但不限于建立VPS或在某些行为违反国家/地区法律或相关法规的情况下进行传播, 本人对于由此引起的任何隐私泄漏或其他后果概不负责。
+- 请勿将本仓库的任何内容用于商业或非法目的，否则后果自负。
+- 任何以任何方式查看此项目的人或直接或间接使用该项目的任何脚本的使用者都应仔细阅读此声明。本人保留随时更改或补充此免责声明的权利。一旦使用并复制了任何相关脚本或Script项目的规则，则视为您已接受此免责声明。

@@ -31,7 +31,9 @@ public class ThrowBananaTask extends Task {
                 }
                 log.info("程序执行投蕉{}根，剩余{}根没投", throwBananaNum - laveNum, laveNum);
                 throwBananaNum = laveNum;
-                DailyTask.randomSuspend();
+                if (laveNum != 0) {
+                    DailyTask.randomSuspend();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

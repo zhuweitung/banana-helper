@@ -28,7 +28,7 @@ public class ServerPush {
             log.info("未配置server酱,本次执行不推送日志到微信");
         }
         if (null != target) {
-            PushHelper.push(target, builder.build(), ConfigLoadUtil.loadFile("logs/daily.log"));
+            PushHelper.push(target, builder.build(), ConfigLoadUtil.loadFile("logs/banana.log"));
         }
     }
 }

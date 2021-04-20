@@ -49,7 +49,10 @@
 
 <img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419211126.png" style="display:inline-block"/>
 
-
+6. 使用Turbo版Server酱推送说明
+   a. 前往[sct.ftqq.com](https://sct.ftqq.com/sendkey)点击登入，创建账号。
+   b. 点击点[SendKey](https://sct.ftqq.com/sendkey)，生成一个`Key`。将其增加到`Github Secrets`中，变量名为`SERVERPUSHKEY`
+   c. [配置消息通道](https://sct.ftqq.com/forward)，选择方糖服务号，保存即可。
 
 ## 配置说明
 

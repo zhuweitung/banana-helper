@@ -7,11 +7,31 @@
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/zhuweitung/banana-helper?style=flat-square)
 
 
-[TOC]
+- [目录](#目录)
+  - [项目简介](#项目简介)
+  - [功能描述](#功能描述)
+  - [使用说明](#使用说明)
+  - [配置说明](#配置说明)
+  - [参考说明](#参考说明)
+  - [特别声明](#特别声明)
+
 
 ## 项目简介
 
-本项目是一个利用GitHub Actions来实现AcFun每日签到、投蕉、点赞、弹幕、分享。目标是让每根香蕉最终的归宿是UP的口袋，而不是一个月之后烂掉。
+本项目是一个利用GitHub Actions来实现AcFun每日签到、投蕉、点赞、弹幕、分享的项目。目标是让每根香蕉最终的归宿是UP的口袋，而不是一个月之后烂掉。
+
+## 功能描述
+
++ [x] 每天自动运行任务，运行时间可自定义（默认18:01执行，受Github服务器限制大概率会延迟几分钟执行）；
++ [x] 每日任务-签到（+蕉x5/随机爆蕉）；
++ [x] 每日任务-完成一次点赞（+蕉x5/翻倍）；
++ [x] 每日任务-分享内容（+蕉x5）；
++ [x] 每日任务-发一次评论或弹幕（+蕉x5）；
++ [ ] 每日任务-看番剧10分钟（+蕉x5）；
++ [ ] 每日任务-看视频20分钟（+蕉x16）；
++ [ ] 直播任务-看60分钟直播开扭蛋（+蕉x29）；
++ [x] 给每日香蕉榜TOP50投蕉点赞弹幕（-蕉x5N）；
++ [x] 给关注的up24小时内的视频动态投蕉点赞弹幕（-蕉x5N）；
 
 ## 使用说明
 
@@ -19,7 +39,7 @@
 2. 打开浏览器，访问[A站](https://www.acfun.cn/)，并登录自己的账号；
 3. 在A站的页面上按下<kbd>F12</kbd>进入开发者工具；
 
-<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419205737.png" style="display:inline-block"/>
+<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210420200020.png" style="display:inline-block"/>
 
 4. 根据上述图解操作后获得`acPasstoken`和`auth_key`的值，将这两个值填入仓库>`Settings`>`Secrets`中；
 
@@ -45,13 +65,15 @@
 | danmuPriority    | [0,1]        | 弹幕优先级，0：从视频弹幕池中取频率最高的发送，1：从自定义弹幕池中随机取弹幕，默认`0` |
 | danmuPool        | [String,...] | 自定义弹幕池                                                 |
 | isShare          | [0,1]        | 是否分享（手机端每日任务），默认`开启`                       |
-| bananaPriority   | [0,1]        | 投蕉优先级，0：优先给每日香蕉榜投蕉，1：优先给关注的up投蕉，默认`0` |
-| followUpPriority | [uid,...]    | 关注up的投蕉优先级，up的uid可以进入up的主页获取，**若投蕉优先级设为1，建议Fork后先把这个列表置空或者填入自己优先关注的up** |
+| bananaPriority   | [0,1]        | 投蕉优先级，0：优先给每日香蕉榜投蕉（TOP50），1：优先给关注的up投蕉，默认`0` |
+| followUpPriority | [uid,...]    | 关注up的投蕉优先级，up的uid可以进入up的主页获取              |
 | userAgent        | String       | UA标识，AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)          |
 
-## API 参考列表
+## 参考说明
 
-- [Sitoi/dailycheckin](https://github.com/Sitoi/dailycheckin)
+- 部分API参考[Sitoi/dailycheckin](https://github.com/Sitoi/dailycheckin)
+- 代码结构参考[JunzhouLiu](https://github.com/JunzhouLiu)
+- 消息通知参考[itning](https://github.com/itning)
 
 ## 特别声明
 

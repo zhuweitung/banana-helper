@@ -3,6 +3,7 @@ package com.zhuweitung;
 import com.zhuweitung.api.AcFunApiHelper;
 import com.zhuweitung.config.Config;
 import com.zhuweitung.signin.Cookie;
+import com.zhuweitung.signin.ServerVerify;
 import com.zhuweitung.task.DailyTask;
 import lombok.extern.log4j.Log4j2;
 
@@ -23,6 +24,10 @@ public class BananaMain {
         }
         //读取环境变量
         Cookie.init(args[0], args[1]);
+
+        if (args.length > 2) {
+            ServerVerify.verifyInit(args[2]);
+        }
 
         //初始化配置
         Config.getInstance().init();

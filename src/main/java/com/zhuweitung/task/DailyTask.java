@@ -67,6 +67,7 @@ public class DailyTask {
             e.printStackTrace();
         } finally {
             //消息推送
+            ServerPush.doServerPush();
         }
     }
 

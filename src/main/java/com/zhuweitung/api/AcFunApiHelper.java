@@ -347,8 +347,11 @@ public class AcFunApiHelper {
                     if (CollectionUtils.isNotEmpty(list)) {
                         list.forEach(videoTrend -> {
                             VideoBase videoBase = videoTrend.parse2VideoBase();
-                            //过滤文章动态和24小时外视频
-                            if (videoBase.getType().equals(2) && videoBase.getCreateTime() > minTime) {
+                            //过滤文章动态、24小时外、配置了跳过的视频
+                            boolean isVideo = videoBase.getType().equals(2);
+                            boolean notOverDate = videoBase.getCreateTime() > minTime;
+                            boolean notSkip = !skip(videoBase.getUpId());
+                            if (isVideo && notOverDate && notSkip) {
                                 trendVideos.add(videoBase);
                                 if (videoBase.getIsThrowBanana()) {
                                     throwBananaedList.add(videoBase.getAc());
@@ -374,6 +377,21 @@ public class AcFunApiHelper {
             }
         }
         return trendVideos;
+    }
+
+    /**
+     * @description 关注的up是否需要跳过
+     * @param upId
+     * @return boolean
+     * @author zhuweitung
+     * @date 2021/4/21
+     */
+    private static boolean skip(Integer upId) {
+        List<Integer> skipUpList = Config.getInstance().getSkipUpList();
+        if (CollectionUtils.isEmpty(skipUpList)) {
+            return false;
+        }
+        return upId == null || skipUpList.contains(upId);
     }
 
     /**

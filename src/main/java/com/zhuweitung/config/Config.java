@@ -68,6 +68,10 @@ public class Config {
      * UA标识
      */
     private String userAgent;
+    /**
+     * 跳过投蕉点赞弹幕up列表
+     */
+    private List<Integer> skipUpList;
 
 
     private Config() {

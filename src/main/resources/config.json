@@ -9,5 +9,6 @@
   "isShare": 1,
   "bananaPriority": 0,
   "followUpPriority": [],
-  "userAgent": "AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)"
+  "userAgent": "AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)",
+  "skipUpList": []
 }

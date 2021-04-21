@@ -62,7 +62,7 @@ public class DailyTask {
             }
             log.info("今日任务已全部执行完毕");
             printAcFunAccDays();
-            log.info(AcFunApiHelper.DEFAULT_DANMU);
+            log.info("AC在，爱一直在！");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -24,7 +24,7 @@ import java.util.*;
 @Log4j2
 public class AcFunApiHelper {
 
-    public static final String DEFAULT_DANMU = "AC在，爱一直在！";
+    public static final String DEFAULT_DANMU = "第一";
 
     /**
      * 每个视频投蕉数

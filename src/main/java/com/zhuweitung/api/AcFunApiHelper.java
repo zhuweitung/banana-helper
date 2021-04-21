@@ -347,7 +347,8 @@ public class AcFunApiHelper {
                     if (CollectionUtils.isNotEmpty(list)) {
                         list.forEach(videoTrend -> {
                             VideoBase videoBase = videoTrend.parse2VideoBase();
-                            if (videoBase.getCreateTime() > minTime) {
+                            //过滤文章动态和24小时外视频
+                            if (videoBase.getType().equals(2) && videoBase.getCreateTime() > minTime) {
                                 trendVideos.add(videoBase);
                                 if (videoBase.getIsThrowBanana()) {
                                     throwBananaedList.add(videoBase.getAc());

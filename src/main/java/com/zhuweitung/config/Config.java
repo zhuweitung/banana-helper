@@ -116,6 +116,7 @@ public class Config {
                 "；投蕉策略为：" + (bananaPriority == 0 ? "每日香蕉榜优先" : "关注up优先") +
                 "；关注up的投蕉优先级为：" + followUpPriority.toString() +
                 "；UA是：" + userAgent +
+                "；跳过投蕉点赞弹幕up列表为：" + skipUpList.toString() +
                 "}";
     }
 }

@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j2;
  * @create 2021/4/18 
  */
 @Log4j2
-public class LikeTask extends Task {
+public class LikeTask extends AbstractTask {
 
     @Override
     public void run() {

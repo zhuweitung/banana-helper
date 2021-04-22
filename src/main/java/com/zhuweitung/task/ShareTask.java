@@ -15,7 +15,7 @@ import java.util.Map;
  * @create 2021/4/18 
  */
 @Log4j2
-public class ShareTask extends Task {
+public class ShareTask extends AbstractTask {
 
     @Override
     public void run() {

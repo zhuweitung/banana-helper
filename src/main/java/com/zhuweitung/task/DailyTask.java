@@ -1,6 +1,5 @@
 package com.zhuweitung.task;
 
-import com.zhuweitung.api.AcFunApiHelper;
 import com.zhuweitung.signin.Acer;
 import lombok.extern.log4j.Log4j2;
 
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @Log4j2
 public class DailyTask {
 
-    private final List<Task> dailyTasks;
+    private final List<AbstractTask> dailyTasks;
 
     public DailyTask() {
         dailyTasks = new ArrayList<>();
@@ -43,7 +42,7 @@ public class DailyTask {
             printTime();
             log.debug("任务启动中...");
             int taskIndex = 0;
-            for (Task task : dailyTasks) {
+            for (AbstractTask task : dailyTasks) {
                 if (task.printInfoReversal()) {
                     log.info("------开始{}------", task.getName());
                 } else {

@@ -7,7 +7,7 @@ import com.zhuweitung.signin.Acer;
  * @author zhuweitung
  * @create 2021/4/18 
  */
-public class InitAcerTask extends Task {
+public class InitAcerTask extends AbstractTask {
 
     @Override
     public void run() {

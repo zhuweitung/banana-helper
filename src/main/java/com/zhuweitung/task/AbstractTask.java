@@ -7,7 +7,7 @@ import com.zhuweitung.standard.IName;
  * @author zhuweitung
  * @create 2021/4/18 
  */
-public abstract class Task implements IName {
+public abstract class AbstractTask implements IName {
 
     public void run() {
     }

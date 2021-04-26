@@ -1,6 +1,5 @@
 package com.zhuweitung.util;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.zhuweitung.signin.Cookie;
@@ -9,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -17,15 +15,14 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * @author zhuweitung
@@ -43,6 +40,11 @@ public class HttpUtil {
             .setConnectionRequestTimeout(5000)
             .setSocketTimeout(10000)
             .build();
+
+    /**
+     * 设置超时重试次数为2
+     */
+    private static final DefaultHttpRequestRetryHandler HTTP_REQUEST_RETRY_HANDLER = new DefaultHttpRequestRetryHandler(2, true);
 
     static Cookie cookie = Cookie.getInstance();
 
@@ -133,7 +135,7 @@ public class HttpUtil {
      * @date 2021/4/18
      */
     public static JsonObject doPost(String url, String requestBody, Map<String, String> headers) {
-        httpClient = HttpClients.createDefault();
+        httpClient = HttpClients.custom().setRetryHandler(HTTP_REQUEST_RETRY_HANDLER).build();
         JsonObject resultJson = null;
         //创建httpPost实例
         HttpPost httpPost = new HttpPost(url);
@@ -191,7 +193,7 @@ public class HttpUtil {
      * @date 2021/4/18
      */
     public static JsonObject doGet(String url, Map<String, String> params) {
-        httpClient = HttpClients.createDefault();
+        httpClient = HttpClients.custom().setRetryHandler(HTTP_REQUEST_RETRY_HANDLER).build();
         JsonObject resultJson = null;
         try {
             //封装请求参数

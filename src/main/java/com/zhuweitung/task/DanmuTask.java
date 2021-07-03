@@ -15,7 +15,11 @@ public class DanmuTask extends AbstractTask {
     @Override
     public void run() {
         VideoBase videoBase = AcFunApiHelper.getRandomVideo(AcFunApiHelper.TYPE_DANMU);
-        AcFunApiHelper.danmu(videoBase);
+        if (videoBase == null) {
+            log.info("未找到可以发弹幕的视频");
+        } else {
+            AcFunApiHelper.danmu(videoBase);
+        }
     }
 
     @Override

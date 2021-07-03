@@ -15,7 +15,11 @@ public class LikeTask extends AbstractTask {
     @Override
     public void run() {
         VideoBase videoBase = AcFunApiHelper.getRandomVideo(AcFunApiHelper.TYPE_LIKE);
-        AcFunApiHelper.like(videoBase);
+        if (videoBase == null) {
+            log.info("未找到可以点赞的视频");
+        } else {
+            AcFunApiHelper.like(videoBase);
+        }
     }
 
     @Override

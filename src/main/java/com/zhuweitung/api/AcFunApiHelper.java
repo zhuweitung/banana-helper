@@ -223,7 +223,7 @@ public class AcFunApiHelper {
         }
 
         //再随机获取视频
-        if (video == null) {
+        if (video == null && CollectionUtils.isNotEmpty(videos)) {
             video = videos.get((int) (Math.random() * videos.size()));
         }
 

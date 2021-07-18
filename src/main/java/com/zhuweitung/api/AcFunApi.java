@@ -26,28 +26,28 @@ public enum AcFunApi {
     /**
      * 获取香蕉榜
      */
-    GET_BANANALIST("获取香蕉榜", "https://api-ipv6.acfunchina.com/rest/app/rank/channel"),
+    GET_BANANALIST("获取香蕉榜", "https://www.acfun.cn/rest/pc-direct/rank/channel"),
     /**
      * 每日签到
      */
-    DAILY_SIGN("每日签到", "https://api-ipv6.acfunchina.com/rest/app/user/signIn"),
+    DAILY_SIGN("每日签到", "https://www.acfun.cn/rest/pc-direct/user/signIn"),
 
     /**
      * 视频发送弹幕
      */
-    VIDEO_SENDDANMU("视频发送弹幕", "https://api-ipv6.acfunchina.com/rest/app/new-danmaku/add"),
+    VIDEO_SENDDANMU("视频发送弹幕", "https://www.acfun.cn/rest/pc-direct/new-danmaku/add"),
     /**
      * 视频投蕉
      */
-    VIDEO_THROWBANANA("视频投蕉", "https://api-ipv6.acfunchina.com/rest/app/banana/throwBanana"),
+    VIDEO_THROWBANANA("视频投蕉", "https://www.acfun.cn/rest/pc-direct/banana/throwBanana"),
     /**
      * 视频点赞
      */
-    VIDEO_LIKE("视频点赞", "https://api.kuaishouzt.com/rest/zt/interact/add"),
+    VIDEO_LIKE("视频点赞", "https://kuaishouzt.com/rest/zt/interact/add"),
     /**
      * 视频取消点赞
      */
-    VIDEO_UNLIKE("视频取消点赞", "https://api.kuaishouzt.com/rest/zt/interact/delete"),
+    VIDEO_UNLIKE("视频取消点赞", "https://kuaishouzt.com/rest/zt/interact/delete"),
     /**
      * 视频分享
      */

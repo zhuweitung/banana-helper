@@ -98,7 +98,7 @@ public class Config {
         }
 
         Config.CONFIG = new Gson().fromJson(configJson, Config.class);
-        HttpUtil.setUserAgent(Config.getInstance().getUserAgent());
+//        HttpUtil.setUserAgent(Config.getInstance().getUserAgent());
         log.info(Config.getInstance().toString());
     }
 
@@ -115,7 +115,6 @@ public class Config {
                 "；是否分享：" + (isShare == 1 ? "是" : "否") +
                 "；投蕉策略为：" + (bananaPriority == 0 ? "每日香蕉榜优先" : "关注up优先") +
                 "；关注up的投蕉优先级为：" + followUpPriority.toString() +
-                "；UA是：" + userAgent +
                 "；跳过投蕉点赞弹幕up列表为：" + skipUpList.toString() +
                 "}";
     }

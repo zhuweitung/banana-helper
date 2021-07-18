@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author zhuweitung
@@ -48,7 +49,7 @@ public class HttpUtil {
 
     static Cookie cookie = Cookie.getInstance();
 
-    private static String userAgent = "AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)";
+    private static String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.70";
 
     private static CloseableHttpClient httpClient = null;
 
@@ -75,11 +76,9 @@ public class HttpUtil {
     public static Map<String, String> getDefaultHeaders() {
         Map<String, String> headers = new HashMap<>();
         headers.put("user-agent", userAgent);
-        headers.put("devicetype", "0");
         headers.put("accept-language", "zh-Hans-CN;q=1, en-CN;q=0.9, ja-CN;q=0.8, zh-Hant-HK;q=0.7, io-Latn-CN;q=0.6");
         headers.put("accept", "application/json");
         headers.put("content-type", "application/x-www-form-urlencoded");
-        headers.put("acPlatform", "IPHONE");
         return headers;
     }
 
@@ -116,6 +115,26 @@ public class HttpUtil {
     /**
      * @description post请求
      * @param url
+     * @param params
+     * @param extHeaders
+     * @return com.google.gson.JsonObject
+     * @author zhuweitung
+     * @date 2021/7/18
+     */
+    public static JsonObject doPost(String url, Map<String, String> params, Properties extHeaders) {
+        StringBuilder requestBody = new StringBuilder();
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if (requestBody.length() > 0) {
+                requestBody.append("&");
+            }
+            requestBody.append(entry.getKey()).append("=").append(entry.getValue());
+        }
+        return doPost(url, requestBody.toString(), extHeaders);
+    }
+
+    /**
+     * @description post请求
+     * @param url
      * @param requestBody
      * @return com.google.gson.JsonObject
      * @author zhuweitung
@@ -123,6 +142,23 @@ public class HttpUtil {
      */
     public static JsonObject doPost(String url, String requestBody) {
         return doPost(url, requestBody, getDefaultHeaders());
+    }
+
+    /**
+     * @description post请求
+     * @param url
+     * @param requestBody
+     * @param extHeaders
+     * @return com.google.gson.JsonObject
+     * @author zhuweitung
+     * @date 2021/7/18
+     */
+    public static JsonObject doPost(String url, String requestBody, Properties extHeaders) {
+        Map<String, String> headers = getDefaultHeaders();
+        for (String key : extHeaders.stringPropertyNames()) {
+            headers.put(key, extHeaders.getProperty(key));
+        }
+        return doPost(url, requestBody, headers);
     }
 
     /**

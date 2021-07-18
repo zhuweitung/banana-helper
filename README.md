@@ -75,7 +75,7 @@
 | isShare          | [0,1]        | 是否分享（手机端每日任务），默认`开启`                       |
 | bananaPriority   | [0,1]        | 投蕉优先级，0：优先给每日香蕉榜投蕉（TOP50），1：优先给关注的up投蕉，默认`0` |
 | followUpPriority | [uid,...]    | 关注up的投蕉优先级，up的uid可以进入up的主页获取              |
-| userAgent        | String       | UA标识，AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)          |
+| ~~userAgent~~    | ~~String~~   | ~~UA标识，AcFun/6.39.0 (iPhone; iOS 14.3; Scale/2.00)~~      |
 | skipUpList       | [uid,...]    | 跳过投蕉点赞弹幕up列表，一般是一些喜欢刷屏的up（我说的就是你`萌次元`） |
 
 ## 参考说明

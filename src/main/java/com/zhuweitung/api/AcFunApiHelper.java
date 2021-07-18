@@ -104,7 +104,9 @@ public class AcFunApiHelper {
         params.put("resourceId", videoBase.getAc() + "");
         params.put("count", PER_VIDEO_BANANA_NUM + "");
         params.put("resourceType", videoBase.getType() + "");
-        JsonObject responseJson = HttpUtil.doPost(AcFunApi.VIDEO_THROWBANANA.getUrl(), params);
+        Properties properties = new Properties();
+        properties.setProperty("referer", "https://www.acfun.cn/v/ac" + videoBase.getAc());
+        JsonObject responseJson = HttpUtil.doPost(AcFunApi.VIDEO_THROWBANANA.getUrl(), params, properties);
         int responseCode = responseJson.get("result").getAsInt();
         if (responseCode == 0) {
             log.info("在视频：{}，给{}喂了{}根大香蕉~", videoBase.getTitle(), videoBase.getUpName(), PER_VIDEO_BANANA_NUM);
@@ -178,7 +180,9 @@ public class AcFunApiHelper {
             params.put("subChannelName", videoBase.getSubChannelName() + "");
             params.put("type", "douga");
             params.put("videoId", videoBase.getId() + "");
-            JsonObject responseJson = HttpUtil.doPost(AcFunApi.VIDEO_SENDDANMU.getUrl(), params);
+            Properties properties = new Properties();
+            properties.setProperty("referer", "https://www.acfun.cn/v/ac" + videoBase.getAc());
+            JsonObject responseJson = HttpUtil.doPost(AcFunApi.VIDEO_SENDDANMU.getUrl(), params, properties);
             int responseCode = responseJson.get("result").getAsInt();
             if (responseCode == 0) {
                 log.info("给视频：{} 发了条弹幕 {}", videoBase.getTitle(), danmu.getBody());

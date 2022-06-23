@@ -39,15 +39,15 @@
 2. 打开浏览器，访问[A站](https://www.acfun.cn/)，并登录自己的账号；
 3. 在A站的页面上按下<kbd>F12</kbd>进入开发者工具；
 
-<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210420200020.png" style="display:inline-block"/>
+<img src="https://github.com/zhuweitung/picbed/blob/main/20210420200020.png" style="display:inline-block"/>
 
 4. 根据上述图解操作后获得`acPasstoken`和`auth_key`的值，将这两个值填入仓库>`Settings`>`Secrets`中；
 
-<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419210900.png" style="display:inline-block"/>
+<img src="https://github.com/zhuweitung/picbed/blob/main/20210419210900.png" style="display:inline-block"/>
 
 5. 手动执行任务，测试配置是否正确；
 
-<img src="https://gitee.com/zhuweitung/picbed/raw/master/20210419211126.png" style="display:inline-block"/>
+<img src="https://github.com/zhuweitung/picbed/blob/main/20210419211126.png" style="display:inline-block"/>
 
 6. 使用Turbo版Server酱推送说明
 

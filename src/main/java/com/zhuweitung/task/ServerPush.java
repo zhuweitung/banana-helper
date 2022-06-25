@@ -18,7 +18,11 @@ public class ServerPush {
     public static void doServerPush() {
         PushMetaInfo.PushMetaInfoBuilder builder = PushMetaInfo.builder().numberOfRetries(3);
         PushHelper.Target target = null;
-        if (StringUtils.isNotBlank(ServerVerify.getFtkey())) {
+        if (StringUtils.isNotBlank(ServerVerify.getFtkey()) && StringUtils.isNotBlank(ServerVerify.getChatId())) {
+            builder = builder.token(ServerVerify.getFtkey()).chatId(ServerVerify.getChatId());
+            target = PushHelper.Target.TELEGRAM;
+            log.info("本次执行推送日志到Telegram");
+        } else if (StringUtils.isNotBlank(ServerVerify.getFtkey())) {
             builder = builder.token(ServerVerify.getFtkey());
             if (ServerVerify.getFtkey().startsWith("SCT")) {
                 target = PushHelper.Target.SERVER_CHAN_TURBO;

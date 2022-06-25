@@ -3,11 +3,12 @@ package com.zhuweitung.api;
 /**
  * 其他Api枚举类
  * @author zhuweitung
- * @create 2021/4/20 
+ * @create 2021/4/20
  */
 public enum OtherApi {
 
     SERVERPUSHV2("Turbo版Server酱", "https://sctapi.ftqq.com/"),
+    ServerPushTelegram("TelegramBot", "https://api.telegram.org/bot"),
     ;
 
 

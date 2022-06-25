@@ -25,6 +25,8 @@ jobs:
           acPassToken: ${{ secrets.acPassToken }}
           authKey: ${{ secrets.authKey }}
           SERVERPUSHKEY: ${{ secrets.SERVERPUSHKEY }}
+          TELEGRAMBOTTOKEN: ${{ secrets.TELEGRAMBOTTOKEN }}
+          TELEGRAMCHATID: ${{ secrets.TELEGRAMCHATID }}
           TZ: Asia/Shanghai
         run:
-          mvn compile exec:java -Dexec.mainClass="com.zhuweitung.BananaMain" -Dexec.args="${acPassToken} ${authKey} ${SERVERPUSHKEY}"
+          mvn compile exec:java -Dexec.mainClass="com.zhuweitung.BananaMain" -Dexec.args="${acPassToken} ${authKey} ${SERVERPUSHKEY} ${TELEGRAMBOTTOKEN} ${TELEGRAMCHATID}"

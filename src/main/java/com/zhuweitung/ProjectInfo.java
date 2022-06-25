@@ -11,9 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 @Log4j2
 public class ProjectInfo {
 
-    private static String updateDate = "2021-04-18";
+    private static String updateDate = "2022-06-25";
     private static String projectRepo = "https://github.com/zhuweitung/banana-helper.git";
-    private static String releaseVersion = "0.2.8";
+    private static String releaseVersion = "0.2.9";
     private static String updateInfo = "";
     private static String acfunMemberUrl = "https://www.acfun.cn/u/625724";
 

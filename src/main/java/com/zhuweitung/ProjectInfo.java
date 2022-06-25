@@ -13,7 +13,7 @@ public class ProjectInfo {
 
     private static String updateDate = "2022-06-25";
     private static String projectRepo = "https://github.com/zhuweitung/banana-helper.git";
-    private static String releaseVersion = "0.2.9";
+    private static String releaseVersion = "0.2.10";
     private static String updateInfo = "";
     private static String acfunMemberUrl = "https://www.acfun.cn/u/625724";
 

@@ -15,11 +15,12 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * AcFun API常用工具类
  * @author zhuweitung
- * @create 2021/4/18 
+ * @create 2021/4/18
  */
 @Log4j2
 public class AcFunApiHelper {
@@ -446,12 +447,7 @@ public class AcFunApiHelper {
                 }
             }
 
-            Map<String, List<Danmu>> danmuCountMap = new HashMap<>();
-            for (Danmu _danmu : danmus) {
-                List<Danmu> list = danmuCountMap.getOrDefault(_danmu.getBody(), new ArrayList<>());
-                list.add(_danmu);
-                danmuCountMap.put(_danmu.getBody(), list);
-            }
+            Map<String, List<Danmu>> danmuCountMap = danmus.stream().collect(Collectors.groupingBy(Danmu::getBody));
             //排序
             List<Map.Entry<String, List<Danmu>>> entries = new ArrayList<>(danmuCountMap.entrySet());
             Collections.sort(entries, new Comparator<Map.Entry<String, List<Danmu>>>() {
@@ -462,9 +458,14 @@ public class AcFunApiHelper {
             });
 
             if (CollectionUtils.isNotEmpty(entries)) {
-                danmu.setBody(entries.get(0).getValue().get(0).getBody());
-                danmu.setPosition(entries.get(0).getValue().get(0).getPosition());
-                return danmu;
+                Map.Entry<String, List<Danmu>> entry = entries.get(0);
+                // 弹幕出现次数大于1次才有重复发送的必要
+                if (entry.getValue().size() > 1) {
+                    Danmu exampleDanmu = entry.getValue().get(0);
+                    danmu.setBody(exampleDanmu.getBody());
+                    danmu.setPosition(exampleDanmu.getPosition());
+                    return danmu;
+                }
             }
         }
 

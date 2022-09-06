@@ -1,6 +1,7 @@
 package com.zhuweitung.task;
 
 import com.zhuweitung.push.PushHelper;
+import com.zhuweitung.push.impl.PushPlusPush;
 import com.zhuweitung.push.model.PushMetaInfo;
 import com.zhuweitung.signin.ServerVerify;
 import com.zhuweitung.util.ConfigLoadUtil;
@@ -27,9 +28,12 @@ public class ServerPush {
             if (ServerVerify.getFtkey().startsWith("SCT")) {
                 target = PushHelper.Target.SERVER_CHAN_TURBO;
                 log.info("本次执行推送日志到Server酱Turbo版本");
+            } else if (ServerVerify.getFtkey().length() == PushPlusPush.TOKEN_LENGTH) {
+                target = PushHelper.Target.PUSH_PLUS;
+                log.info("本次执行推送日志到PushPlus");
             }
         } else {
-            log.info("未配置server酱,本次执行不推送日志到微信");
+            log.info("未配置消息发送通道，本次任务执行不推送");
         }
         if (null != target) {
             PushHelper.push(target, builder.build(), ConfigLoadUtil.loadFile("logs/banana.log"));

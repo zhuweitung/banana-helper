@@ -9,6 +9,7 @@ public enum OtherApi {
 
     SERVERPUSHV2("Turbo版Server酱", "https://sctapi.ftqq.com/"),
     ServerPushTelegram("TelegramBot", "https://api.telegram.org/bot"),
+    PushPlus("PushPlus", "http://www.pushplus.plus/send"),
     ;
 
 

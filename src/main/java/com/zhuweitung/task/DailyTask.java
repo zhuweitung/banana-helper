@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 每日任务
  * @author zhuweitung
- * @create 2021/4/18 
+ * @create 2021/4/18
  */
 @Log4j2
 public class DailyTask {
@@ -86,7 +86,7 @@ public class DailyTask {
 
     /**
      * @description 随机暂停
-     * @param 
+     * @param
      * @return void
      * @author zhuweitung
      * @date 2021/4/18
@@ -100,7 +100,7 @@ public class DailyTask {
 
     /**
      * @description 打印陪伴AcFun的时间
-     * @param 
+     * @param
      * @return void
      * @author zhuweitung
      * @date 2021/4/18

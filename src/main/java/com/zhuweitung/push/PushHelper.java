@@ -1,5 +1,6 @@
 package com.zhuweitung.push;
 
+import com.zhuweitung.push.impl.PushPlusPush;
 import com.zhuweitung.push.impl.ServerChanTurboPush;
 import com.zhuweitung.push.impl.TelegramPush;
 import com.zhuweitung.push.model.PushMetaInfo;
@@ -29,6 +30,9 @@ public final class PushHelper {
             case TELEGRAM: {
                 return new TelegramPush().doPush(metaInfo, content).isSuccess();
             }
+            case PUSH_PLUS: {
+                return new PushPlusPush().doPush(metaInfo, content).isSuccess();
+            }
             default:
                 return false;
         }
@@ -45,6 +49,10 @@ public final class PushHelper {
         /**
          * TG
          */
-        TELEGRAM
+        TELEGRAM,
+        /**
+         * PushPlus
+         */
+        PUSH_PLUS
     }
 }

@@ -8,7 +8,7 @@ import lombok.extern.log4j.Log4j2;
 /**
  * 投蕉任务
  * @author zhuweitung
- * @create 2021/4/18 
+ * @create 2021/4/18
  */
 @Log4j2
 public class ThrowBananaTask extends AbstractTask {
@@ -16,9 +16,16 @@ public class ThrowBananaTask extends AbstractTask {
     @Override
     public void run() {
         int throwBananaNum = Config.getInstance().getThrowBananaNum();
+        if (AcFunApiHelper.getBananaBalance() == 0) {
+            log.info("你的香蕉用完啦，跳过本次投蕉任务");
+            return;
+        }
         log.info("自定义投蕉为：{}根", throwBananaNum);
         while (throwBananaNum > 0) {
             try {
+                if (AcFunApiHelper.getBananaBalance() == 0) {
+                    log.info("你的香蕉用完啦，终止本次投蕉任务");
+                }
                 VideoBase videoBase = AcFunApiHelper.getRandomVideo(AcFunApiHelper.TYPE_BANANA);
                 if (videoBase == null) {
                     log.debug("未找到可以投蕉的视频");

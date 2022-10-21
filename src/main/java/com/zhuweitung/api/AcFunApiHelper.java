@@ -13,6 +13,7 @@ import com.zhuweitung.signin.Token;
 import com.zhuweitung.util.HttpUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -92,6 +93,19 @@ public class AcFunApiHelper {
     }
 
     /**
+     * 香蕉余额减少
+     *
+     * @param reduceNum
+     * @return void
+     * @author zhuweitung
+     * @date 2022/10/21
+     */
+    public static void reduceBananaBalance(int reduceNum) {
+        Acer acer = Acer.getInstance();
+        acer.setBanana(Math.max(0, acer.getBanana() - reduceNum));
+    }
+
+    /**
      * @description 获取可以投的香蕉数
      * @param laveNum 剩余投蕉数
      * @return int
@@ -100,18 +114,23 @@ public class AcFunApiHelper {
      */
     public static int throwBanana(int laveNum, VideoBase videoBase) {
         int throwNum = Math.min(getBananaBalance(), PER_VIDEO_BANANA_NUM);
-
         Map<String, String> params = new HashMap<>();
         params.put("resourceId", videoBase.getAc() + "");
-        params.put("count", PER_VIDEO_BANANA_NUM + "");
+        params.put("count", throwNum + "");
         params.put("resourceType", videoBase.getType() + "");
         Properties properties = new Properties();
         properties.setProperty("referer", "https://www.acfun.cn/v/ac" + videoBase.getAc());
         JsonObject responseJson = HttpUtil.doPost(AcFunApi.VIDEO_THROWBANANA.getUrl(), params, properties);
         int responseCode = responseJson.get("result").getAsInt();
+        String errorMsg = null;
+        try {
+            errorMsg = responseJson.get("error_msg").getAsString();
+        } catch (Exception e) {
+        }
         if (responseCode == 0) {
-            log.info("在视频：{}，给{}喂了{}根大香蕉~", videoBase.getTitle(), videoBase.getUpName(), PER_VIDEO_BANANA_NUM);
+            log.info("在视频：{}，给{}喂了{}根大香蕉~", videoBase.getTitle(), videoBase.getUpName(), throwNum);
             laveNum -= throwNum;
+            reduceBananaBalance(throwNum);
             addVideo(TYPE_BANANA, videoBase.getAc());
 
             //点赞
@@ -124,6 +143,8 @@ public class AcFunApiHelper {
                 danmu(videoBase);
             }
 
+        } else if (StringUtils.isNotBlank(errorMsg)) {
+            log.debug("投蕉出错：{}", errorMsg);
         } else {
             log.debug("请求{}接口出错，请稍后重试。错误请求信息：{}", AcFunApi.VIDEO_THROWBANANA.getName(), responseJson);
         }
@@ -185,7 +206,7 @@ public class AcFunApiHelper {
             properties.setProperty("referer", "https://www.acfun.cn/v/ac" + videoBase.getAc());
             JsonObject responseJson = HttpUtil.doPost(AcFunApi.VIDEO_SENDDANMU.getUrl(), params, properties);
             int responseCode = responseJson.get("result").getAsInt();
-            if (responseCode == 0) {
+            if (responseCode == 0 || responseCode == 128006) {
                 log.info("给视频：{} 发了条弹幕 {}", videoBase.getTitle(), danmu.getBody());
                 addVideo(TYPE_DANMU, videoBase.getAc());
             } else {
